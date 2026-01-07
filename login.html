@@ -1,0 +1,146 @@
+<?php
+require_once "koneksi.php";
+?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Absen PKL</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            background: url('https://lh3.googleusercontent.com/gps-cs-s/AC9h4nrxX2KUZ5u_4Nze5toqBJP079w_ousJpeHsyjQN8Q06YO8VyAf3dKrMhWqgJPL1J3ZMoaNerbUtTPxCZLTnDW9EAfNMMZ-a9SrjTbezuh5AKejL4FeyTPdkhF0-Lhv35XUxC8M=s1360-w1360-h1020-rw')
+            no-repeat center center fixed;
+             background-size: cover;
+        }
+        .main-flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .absen-card {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(60,60,120,0.12);
+            display: flex;
+            overflow: hidden;
+            width: 700px;
+            max-width: 95vw;
+        }
+        .absen-left, .absen-right {
+            padding: 40px 32px;
+            flex: 1;
+        }
+        .absen-left {
+            background: #fff;
+        }
+        .absen-right {
+            background: linear-gradient(135deg, #1150b5ff 60%, #397ce8ff 100%);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .absen-right h3 {
+            margin-bottom: 18px;
+            font-size: 1.5em;
+        }
+        .absen-right p {
+            margin-bottom: 28px;
+            font-size: 1em;
+        }
+        .absen-right a.btn {
+            background: #fff;
+            color: #2d7cff;
+            font-weight: bold;
+            border-radius: 24px;
+            padding: 10px 22px;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(60,60,120,0.08);
+            transition: background 0.2s, color 0.2s;
+        }
+        .absen-right a.btn:hover {
+            background: #2d7cff;
+            color: #fff;
+        }
+        .notif {
+            background: #e0ffe0;
+            color: #2d7a2d;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        form label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+        .btn {
+            background: #2d7cff;
+            color: #fff;
+            border: none;
+            border-radius: 24px;
+            padding: 10px 32px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 18px;
+            width: 100%;
+        }
+        @media (max-width: 700px) {
+            .absen-card {
+                flex-direction: column;
+            }
+            .absen-left, .absen-right {
+                padding: 24px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-flex">
+        <div class="absen-card">
+            <div class="absen-left">
+                <h2>Form Absen Anak PKL</h2>
+                <?php if ($success): ?>
+                    <div class="notif">Absen berhasil disimpan!</div>
+                <?php endif; ?>
+                <form method="POST" autocomplete="off">
+                    <label for="nama">Nama</label>
+                    <input type="text" id="nama" name="nama" required>
+
+                    <label for="sekolah">Asal Sekolah</label>
+                    <input type="text" id="sekolah" name="sekolah" required>
+
+                    <label for="status">Status Kehadiran</label>
+                    <select id="status" name="status" required>
+                        <option value="">-- Pilih Status --</option>
+                        <option value="Hadir">Hadir</option>
+                        <option value="Sakit">Sakit</option>
+                        <option value="Izin">Izin</option>
+                    </select>
+
+                    <button type="submit" class="btn">Kirim</button>
+                </form>
+            </div>
+            <div class="absen-right">
+                <h3>Halo, Teman teman!</h3>
+                <p>Login dibawah untuk melihat data absen anak PKL.</p>
+                <a href="login.php" class="btn">Login sebagai Admin</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

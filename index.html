@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perpustakaan Kita    </title>
+    <title>Perpustakaan Kita</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,15 +12,148 @@
     <h1>Perpustakaan Kita</h1>
     <nav>
         <a href="#kategori">List Buku</a>
-        <a href="#layanan">Layanan Peminjaman</a>
-        <a href="#login" class="login-admin">Login Sebagai Admin</a>
+        <a href="login.html" class="login-admin">Login Untuk Meminjam</a>
     </nav>
 </header>
+
 <section class="utama">
     <h2>Selamat Datang di Perpustakaan</h2>
-    <p>Sumber ilmu pengetahuan untuk semua kalangan</p>
+    <p>Silahkan jelajahi buku yang kami miliki</p>
     <button>Jelajahi Sekarang</button>
 </section>
+
+<section class="top-buku" id="kategori">
+    <h2>List Buku-buku Terbaik</h2>
+    <p class="subjudul">Rekomendasi buku favorit berdasarkan peminat baca kami</p>
+
+    <div class="buku-container">
+
+        <!-- BUKU 1 -->
+        <div class="buku-card">
+            <img src="assets/buku1.jpg" alt="Buku">
+            <h3>Laut Bercerita</h3>
+            <p class="penulis">Leila S. Chudori</p>
+            <p class="tahun">Tahun Terbit: 2017</p>
+
+            <div class="aksi">
+                <button class="pinjam">Pinjam</button>
+                <button class="detail"
+                    onclick="bukaDetail(
+                        'assets/buku1.jpg',
+                        'Laut Bercerita',
+                        'Leila S. Chudori',
+                        '2017',
+                        'tersedia'
+                    )">
+                    Detail
+                </button>
+            </div>
+        </div>
+
+        <!-- BUKU 2 -->
+        <div class="buku-card">
+            <img src="assets/buku2.jpg" alt="Buku">
+            <h3>Dilan 1983: Wo Ai Ni</h3>
+            <p class="penulis">Pidi Baiq</p>
+            <p class="tahun">Tahun Terbit: 2024</p>
+
+            <div class="aksi">
+                <button class="pinjam">Pinjam</button>
+                <button class="detail"
+                    onclick="bukaDetail(
+                        'assets/buku2.jpg',
+                        'Dilan 1983: Wo Ai Ni',
+                        'Pidi Baiq',
+                        '2024',
+                        'dipinjam'
+                    )">
+                    Detail
+                </button>
+            </div>
+        </div>
+
+        <!-- BUKU 3 -->
+        <div class="buku-card">
+            <img src="assets/buku3.jpg" alt="Buku">
+            <h3>Seporsi Mie Ayam Sebelum Mati</h3>
+            <p class="penulis">Brian Khrisna</p>
+            <p class="tahun">Tahun Terbit: 2025</p>
+
+            <div class="aksi">
+                <button class="pinjam">Pinjam</button>
+                <button class="detail"
+                    onclick="bukaDetail(
+                        'assets/buku3.jpg',
+                        'Seporsi Mie Ayam Sebelum Mati',
+                        'Brian Khrisna',
+                        '2025',
+                        'tersedia'
+                    )">
+                    Detail
+                </button>
+            </div>
+        </div>
+        <div class="buku-card">
+            <img src="assets/buku4.jpg" alt="Buku">
+            <h3>Si Juki: Kisah Kusut Dunia Dongeng 1</h3>
+            <p class="penulis">Faza Meonk</p>
+            <p class="tahun">Tahun Terbit: 2016</p>
+
+            <div class="aksi">
+                <button class="pinjam">Pinjam</button>
+                <button class="detail"
+                    onclick="bukaDetail(
+                        'assets/buku4.jpg',
+                        'Si Juki: Kisah Kusut Dunia Dongeng 1',
+                        'Faza Meonk',
+                        '2016',
+                        'tersedia'
+                    )">
+                    Detail
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================
+     MODAL DETAIL BUKU
+===================== -->
+<div id="modalDetail" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="tutupDetail()">&times;</span>
+
+        <img id="detailImg">
+        <h2 id="detailJudul"></h2>
+        <p id="detailPenulis"></p>
+        <p id="detailTahun"></p>
+        <p id="detailStatus" class="status"></p>
+    </div>
+</div>
+
+<!-- =====================
+     JAVASCRIPT
+===================== -->
+<script>
+function bukaDetail(img, judul, penulis, tahun, status) {
+    document.getElementById('detailImg').src = img;
+    document.getElementById('detailJudul').innerText = judul;
+    document.getElementById('detailPenulis').innerText = "Penulis: " + penulis;
+    document.getElementById('detailTahun').innerText = "Tahun Terbit: " + tahun;
+
+    const statusEl = document.getElementById('detailStatus');
+    statusEl.className = 'status ' + status;
+    statusEl.innerText = status === 'tersedia'
+        ? 'Status: Tersedia'
+        : 'Status: Sedang Dipinjam';
+
+    document.getElementById('modalDetail').style.display = 'flex';
+}
+
+function tutupDetail() {
+    document.getElementById('modalDetail').style.display = 'none';
+}
+</script>
 
 </body>
 </html>
